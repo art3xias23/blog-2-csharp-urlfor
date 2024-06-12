@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\blog-2-charp-urlfor.props" />
+</Project>
