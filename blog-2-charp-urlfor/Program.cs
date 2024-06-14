@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ITemplateParser, TemplateParser>();
 
 var app = builder.Build();
@@ -39,7 +40,7 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
-app.MapGet("/test", (ITemplateParser parser) =>
+app.MapGet("/Example", (ITemplateParser parser) =>
 {
     var name = "Victor";
     var template = "<p>My name is {{name}}</p>";
@@ -47,6 +48,32 @@ app.MapGet("/test", (ITemplateParser parser) =>
    return templateText;
 
 });
+
+app.MapGet("/ExampleUrl", (ITemplateParser parser, HttpContext context) =>
+{
+    var template = $@"<a href=""/examples/{23}"">Hardcoded url</a>";
+    var templateText = parser.Render(new { }, template);
+    context.Response.ContentType = "text/html";
+    context.Response.WriteAsync(templateText);
+});
+
+app.MapGet("/GetUrl", (ITemplateParser parser, HttpContext context) =>
+{
+    var template = @"<a href=""{{url_for 'GetExamplesUrlFor' 23}}"">The href was generated using our custom url_for</a>";
+   var templateText = parser.Render(new { }, template);
+   context.Response.ContentType = "text/html";
+   context.Response.WriteAsync(templateText);
+
+});
+
+app.MapGet("/examples/{id}", (int id, ITemplateParser parser, HttpContext context) =>
+{
+    var template = $@"<p>The routing param from the url is {id}</p> <br> <p>End of Demo</p>";
+   var templateText = parser.Render(new { }, template);
+   context.Response.ContentType = "text/html";
+   context.Response.WriteAsync(templateText);
+})
+    .WithName("GetExamplesUrlFor");
 
 app.Run();
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("blog-2-charp-urlfor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d74a9d7df1349456061263c8ee2a2dcdd1d4d0ac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5d99283eb248c5a9dadf4e71eeff7e07c2e91cd")]
 [assembly: System.Reflection.AssemblyProductAttribute("blog-2-charp-urlfor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("blog-2-charp-urlfor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
