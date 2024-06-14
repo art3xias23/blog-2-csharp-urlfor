@@ -58,7 +58,7 @@ namespace blog_2_charp_urlfor
                 return newPath;
             }
 
-            return null;
+            return "/error";
         }
 
         private IDictionary<string, string> ExtractRouteValues(RoutePattern pattern, object[]? providedRouteValues)
